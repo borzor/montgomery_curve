@@ -8,18 +8,18 @@ public:
     {}
     void double_point(point &point1){ //dbl-1987-m-3
         NTL::ZZ a24=point1.a,two(2),A,B,C,four(4);
-        AddMod(A,point1.X,point1.Z,point1.p);
-        PowerMod(A,A,two,point1.p);
-        SubMod(B,point1.X,point1.Z,point1.p);
-        PowerMod(B,B,two,point1.p);
+        AddMod(A,point1.X,point1.Z,point1.p);//x+z
+        PowerMod(A,A,two,point1.p);//(x+z)^2
+        SubMod(B,point1.X,point1.Z,point1.p);//x-z
+        PowerMod(B,B,two,point1.p);//(x-z)^2
         SubMod(C,A,B,point1.p);// (x+z)^2-(x-z)^2
         MulMod(point1.X,A,B,point1.p);// (x+z)^2*(x-z)^2
         InvMod(four,four,point1.p);// 1/4
-        AddMod(a24,a24,two,point1.p);//a-2
-        MulMod(a24,a24,four,point1.p);//a-2/4
-        MulMod(point1.Z,a24,C,point1.p);//(a-2/4)*(x+z)^2-(x-z)^2
-        AddMod(point1.Z,point1.Z,B,point1.p);//((a-2/4)*(x+z)^2-(x-z)^2)+(x-z)^2
-        MulMod(point1.Z,point1.Z,C,point1.p);
+        AddMod(a24,a24,two,point1.p);//a+2
+        MulMod(a24,a24,four,point1.p);//(a+2)/4
+        MulMod(point1.Z,a24,C,point1.p);//(a+2/4)*((x+z)^2-(x-z)^2)
+        AddMod(point1.Z,point1.Z,B,point1.p);//((a2+2/4)*(x+z)^2-(x-z)^2)+(x-z)^2
+        MulMod(point1.Z,point1.Z,C,point1.p);//((x+z)^2-(x-z)^2)*((a2+2/4)*(x+z)^2-(x-z)^2)+(x-z)^2))
     }
     void add_point(point &point3, point &point2, point &default_){// dadd-1987-m-2
         NTL::ZZ two(2), t1, t2, t3, t4;
