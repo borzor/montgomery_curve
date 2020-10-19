@@ -14,9 +14,8 @@ public:
         PowerMod(B,B,two,point1.p);//(x-z)^2
         SubMod(C,A,B,point1.p);// (x+z)^2-(x-z)^2
         MulMod(point1.X,A,B,point1.p);// (x+z)^2*(x-z)^2
-        InvMod(four,four,point1.p);// 1/4
         AddMod(a24,a24,two,point1.p);//a+2
-        MulMod(a24,a24,four,point1.p);//(a+2)/4
+        MulMod(a24,a24,point1.inv_four,point1.p);//(a+2)/4
         MulMod(point1.Z,a24,C,point1.p);//(a+2/4)*((x+z)^2-(x-z)^2)
         AddMod(point1.Z,point1.Z,B,point1.p);//((a2+2/4)*(x+z)^2-(x-z)^2)+(x-z)^2
         MulMod(point1.Z,point1.Z,C,point1.p);//((x+z)^2-(x-z)^2)*((a2+2/4)*(x+z)^2-(x-z)^2)+(x-z)^2))
